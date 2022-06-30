@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import java.io.*;
 import java.util.List;
+import java.util.Scanner;
 
 public class Books {
 
@@ -16,7 +17,6 @@ public class Books {
     public void displayBookDetails()  {
 
         System.out.println("---------Available books are-------------");
-//        JSONParser jsonParser = new JSONParser();
 
         try {
             ObjectMapper mapper=new ObjectMapper();
@@ -26,7 +26,7 @@ public class Books {
             TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {};
             List<Book> books=mapper.readValue(inputStream,typeReference);
             for (Book b:books){
-                System.out.println("Book Title is---- "+b.getTitle()+" Author is--- "+b.getAuthor());
+                System.out.println("||Book Title--- "+b.getTitle()+" || Author --- "+b.getAuthor()+" || Genre --- "+b.getGenre()+" || Book ID---"+b.getNumber());
             }
 
         }catch (FileNotFoundException e){
@@ -38,36 +38,9 @@ public class Books {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {
         };
-//        ***************************************
-//        JSONArray jsonarray = new JSONArray();
-//        for (int i = 0; i < jsonarray.length(); i++) {
-//            JSONObject jsonobject = jsonarray.getJSONObject(i);
-//            String title = jsonobject.getString("Title");
-//            String author = jsonobject.getString("Author");
-//            System.out.println(title+author);
-//        }
-//        **********************************************
-//        try (FileReader reader = new FileReader("books_data.json"))
-//        {
-//            //Read JSON file
-//            Object obj = jsonParser.parse(reader);
-//
-//            JSONArray employeeList = (JSONArray) obj;
-//            System.out.println(employeeList);
-//
-//            //Iterate over employee array
-//            employeeList.forEach( book -> parseBookObject( (JSONObject) book ) );
-//
-//        }catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
 
 //        ***********************working csv file*************************
 //
@@ -93,4 +66,6 @@ public class Books {
 //            e.printStackTrace();
 //        }
     }
+
+
 }

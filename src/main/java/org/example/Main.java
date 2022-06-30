@@ -11,6 +11,8 @@ public class Main {
         if (validate==true){
             Books books=new Books();
             books.displayBookDetails();
+            user.selectBook();
         }
+
     }
 }

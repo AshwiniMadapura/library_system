@@ -1,5 +1,18 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 public class User {
@@ -21,5 +34,84 @@ public class User {
             System.out.println("please enter correct credentials");
             return false;
         }
+    }
+
+    public void selectBook(){
+        System.out.println("*******************************************");
+        System.out.println("Please enter Book ID to lend any book");
+        Scanner input = new Scanner(System.in);
+        int bookId;
+        bookId= Integer.parseInt(input.nextLine());
+
+        try {
+            ObjectMapper mapper=new ObjectMapper();
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
+            InputStream inputStream = new FileInputStream(new File("src/main/resources/books_data.json"));
+            TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {};
+            List<Book> books=mapper.readValue(inputStream,typeReference);
+            for (Book b:books){
+                if (bookId== b.Number){
+                    System.out.println("Book selected is---- "+b.Title+", written by -- "+b.Author);
+
+//                    to add selected item in new json file
+                    JSONObject lentBookDetails = new JSONObject();
+                    lentBookDetails.put("Title", b.Title);
+                    lentBookDetails.put("Author", b.Author);
+                    lentBookDetails.put("Genre", b.Genre);
+                    lentBookDetails.put("Publisher", b.Publisher);
+                    lentBookDetails.put("Number", b.Number);
+                    lentBookDetails.put("SubGenre", b.SubGenre);
+
+                    //Add lent books to list
+                    JSONArray lentBookList = new JSONArray();
+                    lentBookList.add(lentBookDetails);
+                    //Write JSON file
+                    try (FileWriter file = new FileWriter("src/main/resources/loan.json")) {
+                        //We can write any JSONArray or JSONObject instance to the file
+                        file.write(lentBookList.toJSONString());
+                        file.flush();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+//                    JSONParser jsonparser = new JSONParser();
+//                    try( FileReader reader = new FileReader("test.json"))
+//                    {
+//                        Object obj = jsonparser.parse(reader);
+//                        JSONArray list = (JSONArray) obj;
+//                        list.forEach(node->{
+//                            ((JSONObject) node).remove("UserID");
+//                        });
+//                        System.out.println(list);
+//                        saveAsJsonFile(list.toJSONString(),"test.json");
+//                    }
+//                    catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+
+                }
+
+            }
+
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonParseException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void loanBook(){
+
     }
 }
