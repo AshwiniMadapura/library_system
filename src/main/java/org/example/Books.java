@@ -26,8 +26,10 @@ public class Books {
             TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {};
             List<Book> books=mapper.readValue(inputStream,typeReference);
             for (Book b:books){
-                System.out.println("||Book Title--- "+b.getTitle()+" || Author --- "+b.getAuthor()+" || Genre --- "+b.getGenre()+" || Book ID---"+b.getNumber());
-            }
+                if (b.getLent()==false) {
+                    System.out.println("||Book Title--- " + b.getTitle() + " || Author --- " + b.getAuthor() + " || Genre --- " + b.getGenre() + " || Book ID---" + b.getNumber());
+                }
+                }
 
         }catch (FileNotFoundException e){
             e.printStackTrace();
@@ -38,6 +40,17 @@ public class Books {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+
+
+
+
+
+
+
+
+
 
         TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {
         };

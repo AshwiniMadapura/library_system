@@ -7,11 +7,17 @@ public class Main {
         Scanner scanner=new Scanner(System.in);
 
         User user=new User();
+        Books books=new Books();
+        Book book=new Book();
         boolean validate=user.validateUser();
+
         if (validate==true){
-            Books books=new Books();
             books.displayBookDetails();
             user.selectBook();
+            System.out.println("Book ID selecetd is"+user.getBookId());
+
+//            if (book.getLent()==false){
+//            books.displayBookDetails();}
         }
 
     }

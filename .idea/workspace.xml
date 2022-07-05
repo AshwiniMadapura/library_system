@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0841e38f-4885-466e-b3db-d9fe2c052d55" name="Changes" comment="reading data from json">
+    <list default="true" id="0841e38f-4885-466e-b3db-d9fe2c052d55" name="Changes" comment="select book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Books.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Books.java" afterDir="false" />
@@ -134,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656505799797</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="select book">
+      <created>1656601415118</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656601415118</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,6 +159,7 @@
     <MESSAGE value="created and converted to jsonfile" />
     <MESSAGE value="added json file" />
     <MESSAGE value="reading data from json" />
-    <option name="LAST_COMMIT_MESSAGE" value="reading data from json" />
+    <MESSAGE value="select book" />
+    <option name="LAST_COMMIT_MESSAGE" value="select book" />
   </component>
 </project>

@@ -7,6 +7,15 @@ public class Book {
     String Genre;
     String Publisher;
     String SubGenre;
+    Boolean isLent=false;
+
+    public Boolean getLent() {
+        return isLent;
+    }
+
+    public void setLent(Boolean lent) {
+        isLent = lent;
+    }
 
     public String getSubGenre() {
         return SubGenre;
