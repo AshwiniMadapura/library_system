@@ -40,45 +40,8 @@ public class Books {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
-
-
-
-
-
-
-
-
         TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {
         };
 
-//        ***********************working csv file*************************
-//
-//        System.out.println("---------Available books are-------------");
-//        ArrayList<String> colData = new ArrayList<>();
-//        try (BufferedReader fileReader
-//                     = new BufferedReader(new FileReader("src/main/resources/books_data.csv"))) {
-//            String line = "";
-//
-//            //Read the file line by line
-//            while ((line = fileReader.readLine()) != null) {
-//                //Get all tokens available in line
-//                String[] fields = line.split(" ,");
-//
-//                for (String field : fields) {
-//                    System.out.println(field);
-//                }
-//                //Verify tokens
-//                System.out.println();
-//                System.out.println("Please type the book number to select book");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
-
-
 }

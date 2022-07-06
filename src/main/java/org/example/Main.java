@@ -14,10 +14,6 @@ public class Main {
         if (validate==true){
             books.displayBookDetails();
             user.selectBook();
-            System.out.println("Book ID selecetd is"+user.getBookId());
-
-//            if (book.getLent()==false){
-//            books.displayBookDetails();}
         }
 
     }

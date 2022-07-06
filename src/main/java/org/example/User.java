@@ -12,19 +12,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class User {
-    int bookId;
 
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
+    List<Book> availableBooks=new ArrayList<>();
 
     public Boolean validateUser() {
         Scanner input = new Scanner(System.in);
@@ -51,7 +45,7 @@ public class User {
         System.out.println("Please enter Book ID to lend any book");
         Scanner input = new Scanner(System.in);
 
-        bookId= Integer.parseInt(input.nextLine());
+       int bookId= Integer.parseInt(input.nextLine());
 
 
         try {
@@ -63,38 +57,20 @@ public class User {
             List<Book> books=mapper.readValue(inputStream,typeReference);
             for (Book b:books){
                 if (bookId== b.Number){
-                    System.out.println("Book selected is---- "+b.Title+", written by -- "+b.Author);
+                    System.out.println("Book lent is---- "+b.Title+", written by -- "+b.Author);
                     b.setLent(true);
-                    System.out.println(b.getLent());
-//                    System.out.println("Press enter to view available books");
-//                    String choice=input.nextLine();
-
-//                    to add selected item in new json file
-//                    JSONObject lentBookDetails = new JSONObject();
-//                    lentBookDetails.put("Title", b.Title);
-//                    lentBookDetails.put("Author", b.Author);
-//                    lentBookDetails.put("Genre", b.Genre);
-//                    lentBookDetails.put("Publisher", b.Publisher);
-//                    lentBookDetails.put("Number", b.Number);
-//                    lentBookDetails.put("SubGenre", b.SubGenre);
-//
-//                    //Add lent books to list
-//                    JSONArray lentBookList = new JSONArray();
-//                    lentBookList.add(lentBookDetails);
-//                    //Write JSON file
-//                    try (FileWriter file = new FileWriter("src/main/resources/loan.json")) {
-//                        //We can write any JSONArray or JSONObject instance to the file
-//                        file.write(lentBookList.toJSONString());
-//                        file.flush();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
-
+                    System.out.println("Press enter to view available books");
+                    String choice=input.nextLine();
                 }
-                System.out.println(b.getLent() +"selected"+ b.Title);
 
+                if (b.getLent()==false){
+                    availableBooks.add(b);}
+            }
+            System.out.println("*****************************");
+            System.out.println("Available books are");
+            System.out.println("*****************************");
+            for (Book b:availableBooks) {
+                System.out.println("||Book Title--- " + b.getTitle() + " || Author --- " + b.getAuthor() + " || Genre --- " + b.getGenre() + " || Book ID---" + b.getNumber());
             }
 
         }catch (FileNotFoundException e){
